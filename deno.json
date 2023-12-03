@@ -1,47 +1,56 @@
 {
-  "lock": false,
-  "tasks": {
-    "check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
-    "start": "deno run -A --watch=static/,routes/ dev.ts",
-    "build": "deno run -A dev.ts build",
-    "preview": "deno run -A main.ts",
-    "update": "deno run -A -r https://fresh.deno.dev/update ."
-  },
-  "lint": {
-    "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ]
-    }
-  },
-  "exclude": [
-    "**/_fresh/*"
-  ],
-  "imports": {
-    "$fresh/": "https://deno.land/x/fresh@1.5.4/",
-    "preact": "https://esm.sh/preact@10.18.1",
-    "preact/": "https://esm.sh/preact@10.18.1/",
-    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
-    "@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
-    "@twind": "./util/twind.ts",
-    "twind": "https://esm.sh/twind@0.16.19",
-    "twind/": "https://esm.sh/twind@0.16.19/",
-    "dayjs": "https://esm.sh/v135/dayjs@1.11.10/denonext/dayjs.mjs",
-    "dayjs/": "https://esm.sh/dayjs@1.11.10/",
-    "relativetime": "https://esm.sh/dayjs@1.11.10/plugin/relativeTime",
-    "$std/": "https://deno.land/std@0.193.0/",
-    "@db": "./util/db.ts",
-    "postgress": "https://deno.land/x/postgres@v0.17.0/mod.ts",
-    "dotenv": "https://deno.land/std@0.208.0/dotenv/load.ts",
-    "marked": "https://deno.land/x/marked/mod.ts",
-    "rendermarkdown": "https://deno.land/x/markdown_renderer/mod.ts",
-    "/": "./",
-    "./": "./"
-  },
-  "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  }
+	"lock": false,
+	"tasks": {
+		"check": "deno fmt --check && deno lint && deno check **/*.ts && deno check **/*.tsx",
+		"start": "deno run -A --watch=static/,routes/ dev.ts",
+		"build": "deno run -A dev.ts build",
+		"preview": "deno run -A main.ts",
+		"update": "deno run -A -r https://fresh.deno.dev/update ."
+	},
+	"lint": {
+		"rules": {
+			"tags": [
+				"fresh",
+				"recommended"
+			]
+		}
+	},
+	"fmt": {
+		"options": {
+			"useTabs": true,
+			"lineWidth": 80,
+			"indentWidth": 4,
+			"singleQuote": false,
+			"proseWrap": "preserve"
+		}
+	},
+	"exclude": [
+		"**/_fresh/*"
+	],
+	"imports": {
+		"$fresh/": "https://deno.land/x/fresh@1.5.4/",
+		"preact": "https://esm.sh/preact@10.18.1",
+		"preact/": "https://esm.sh/preact@10.18.1/",
+		"preact-render-to-string": "https://esm.sh/*preact-render-to-string@6.2.2",
+		"@preact/signals": "https://esm.sh/*@preact/signals@1.2.1",
+		"@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.0",
+		"@twind": "./util/twind.ts",
+		"twind": "https://esm.sh/twind@0.16.19",
+		"twind/": "https://esm.sh/twind@0.16.19/",
+		"dayjs": "https://esm.sh/v135/dayjs@1.11.10/denonext/dayjs.mjs",
+		"dayjs/": "https://esm.sh/dayjs@1.11.10/",
+		"relativetime": "https://esm.sh/dayjs@1.11.10/plugin/relativeTime",
+		"$std/": "https://deno.land/std@0.193.0/",
+		"@db": "./util/db.ts",
+		"postgress": "https://deno.land/x/postgres@v0.17.0/mod.ts",
+		"dotenv": "https://deno.land/std@0.208.0/dotenv/load.ts",
+		"marked": "https://deno.land/x/marked/mod.ts",
+		"rendermarkdown": "https://deno.land/x/markdown_renderer/mod.ts",
+		"/": "./",
+		"./": "./"
+	},
+	"compilerOptions": {
+		"jsx": "react-jsx",
+		"jsxImportSource": "preact"
+	}
 }
