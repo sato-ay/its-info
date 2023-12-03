@@ -1,29 +1,13 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Head } from "$fresh/src/runtime/head.ts";
 import { tw } from "@twind";
-import dayjs from "https://esm.sh/v135/dayjs@1.11.10/denonext/dayjs.mjs";
-import relativeTime from "https://esm.sh/dayjs@1.11.10/plugin/relativeTime";
-
-interface Article {
-  id: string;
-  title: string;
-  created_at: string;
-}
+import dayjs from "dayjs";
+import relativeTime from "relativetime";
+import { Article, findAllArticles } from "@db";
 
 export const handler: Handlers<Article[]> = {
-  async GET(req, ctx) {
-    const articles: Article[] = [
-      {
-        id: "1",
-        title: "Article 1",
-        created_at: "2023-10-17T00:00:00.000Z",
-      },
-      {
-        id: "2",
-        title: "Article 2",
-        created_at: "2023-11-10T00:00:00.000Z",
-      },
-    ];
+  async GET(_, ctx) {
+    const articles = await findAllArticles();
     return ctx.render(articles);
   },
 };
@@ -34,14 +18,27 @@ export default function Home({ data }: PageProps<Article[]>) {
   return (
     <div class={tw("h-screen bg-gray-200")}>
       <Head>
-        <title>Fresh Blog</title>
+        <title>ITS-Info</title>
       </Head>
       <div
         class={tw(
-          "max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-12 pb-20 flex flex-col"
+          "max-w-screen-sm mx-auto px-4 sm:px-6 md:px-8 pt-12 pb-20 flex flex-col",
         )}
       >
-        <h1 class={tw("font-extrabold text-5xl text-gray-800")}>Fresh Blog</h1>
+        <h1 class={tw("font-extrabold text-5xl text-gray-800")}>ITS-Info</h1>
+        <section class={tw("mt-8")}>
+          <div class={tw("flex justify-between items-center")}>
+            <h2 class={tw("text-4xl font-bold text-gray-800 py-4")}>Posts</h2>
+            <a
+              href="/articles/create"
+              class={tw(
+                "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md",
+              )}
+            >
+              Create Post
+            </a>
+          </div>
+        </section>
         <section class={tw("mt-8")}>
           <h2 class={tw("text-4xl font-bold text-gray-800 py-4")}>Posts</h2>
           <ul>
@@ -53,7 +50,7 @@ export default function Home({ data }: PageProps<Article[]>) {
                 <a href={`articles/${article.id}`}>
                   <h3
                     class={tw(
-                      "text-2xl font-bold mb-2 text-gray-800 hover:text-gray-600 hover:text-underline"
+                      "text-2xl font-bold mb-2 text-gray-800 hover:text-gray-600 hover:text-underline",
                     )}
                   >
                     {article.title}
