@@ -67,6 +67,14 @@ export default function Home({ data }: PageProps<Article[]>) {
                 >
                   {dayjs(article.created_at).fromNow()}
                 </time>
+                <div
+                  class={tw(
+                    "flex flex-row-reverse",
+                  )}
+                >
+                  <img src="/trash.svg" />
+                  <img src="/edit.svg" />
+                </div>
               </li>
             ))}
           </ul>
