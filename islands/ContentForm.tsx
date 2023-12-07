@@ -1,6 +1,6 @@
 import { useState } from "preact/hooks";
 import { tw } from "@twind";
-import { renderMarkdown } from "rendermarkdown";
+import { marked } from "marked";
 import * as ammonia from "ammonia";
 await ammonia.init();
 
@@ -13,7 +13,7 @@ export default function ContentForm({ initialValue = "" }: Props) {
   const [preview, setPreview] = useState(false);
 
   const parse = (content: string) => {
-    const parsed = renderMarkdown(content);
+    const parsed = marked(content);
     const purified = ammonia.clean(parsed);
     return purified;
   };

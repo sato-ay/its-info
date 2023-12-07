@@ -44,8 +44,8 @@
     "@db": "./util/db.ts",
     "postgress": "https://deno.land/x/postgres@v0.17.0/mod.ts",
     "dotenv": "https://deno.land/std@0.208.0/dotenv/load.ts",
-    "marked": "https://deno.land/x/marked/mod.ts",
-    "rendermarkdown": "https://deno.land/x/markdown_renderer/mod.ts",
+    "marked": "https://deno.land/x/marked@1.0.2/mod.ts",
+    "rendermarkdown": "https://deno.land/x/markdown_renderer@0.1.3/mod.ts",
     "ammonia": "https://deno.land/x/ammonia@0.3.1/mod.ts",
     "/": "./",
     "./": "./"
