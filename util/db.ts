@@ -60,3 +60,19 @@ export const createArticle = async (
     return null;
   }
 };
+
+export const deleteArticle = async (id: string) => {
+  try {
+    const result = await client.queryObject<Article>(
+      "DELETE FROM articles WHERE id = $1",
+      [id],
+    );
+    if (result.rowCount === 0) {
+      return null;
+    }
+    return result.rows[0];
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+};
