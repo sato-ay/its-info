@@ -4,6 +4,7 @@ import { tw } from "@twind";
 import dayjs from "dayjs";
 import relativeTime from "relativetime";
 import { Article, findAllArticles } from "@db";
+import DeleteButton from "@islands/DeleteButton.tsx";
 
 export const handler: Handlers<Article[]> = {
   async GET(_, ctx) {
@@ -69,11 +70,20 @@ export default function Home({ data }: PageProps<Article[]>) {
                 </time>
                 <div
                   class={tw(
-                    "flex flex-row-reverse",
+                    "float-right",
                   )}
                 >
-                  <img src="/trash.svg" />
-                  <img src="/edit.svg" />
+                  <div
+                    class={tw(
+                      "w-14",
+                      "text-right",
+                      "flex flex-row-reverse",
+                      "justify-around",
+                    )}
+                  >
+                    <DeleteButton articleId={article.id} />
+                    <img src="/edit.svg" />
+                  </div>
                 </div>
               </li>
             ))}

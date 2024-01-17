@@ -21,7 +21,7 @@ await client.connect();
 export const findAllArticles = async () => {
   try {
     const result = await client.queryObject<Article>(
-      "SELECT * FROM articles ORDER BY created_at DESC",
+      "SELECT * FROM articles WHERE deleted = FALSE ORDER BY created_at DESC",
     );
     return result.rows;
   } catch (e) {
@@ -33,7 +33,7 @@ export const findAllArticles = async () => {
 export const findArticleById = async (id: string) => {
   try {
     const result = await client.queryObject<Article>(
-      "SELECT * FROM articles WHERE id = $1",
+      "SELECT * FROM articles WHERE id = $1 AND deleted = FALSE",
       [id],
     );
     if (result.rowCount === 0) {
@@ -54,6 +54,22 @@ export const createArticle = async (
       "INSERT INTO articles (title, content) VALUES ($1, $2) RETURNING *",
       [article.title, article.content],
     );
+    return result.rows[0];
+  } catch (e) {
+    console.error(e);
+    return null;
+  }
+};
+
+export const deleteArticle = async (id: string) => {
+  try {
+    const result = await client.queryObject<Article>(
+      "UPDATE articles SET deleted = TRUE WHERE id = $1",
+      [id],
+    );
+    if (result.rowCount === 0) {
+      return null;
+    }
     return result.rows[0];
   } catch (e) {
     console.error(e);
